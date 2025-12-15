@@ -132,9 +132,13 @@ Future<void> getFCMToken() async {
   try {
     var fcmToken = await FirebaseMessaging.instance.getToken();
     if (fcmToken != null) {
-   await httpPost(
+      await httpPost(
         Config.fcmUpdate,
-        {"fcm": fcmToken, "player_id": oneSignalPlayerId},
+        {
+          "fcm": fcmToken,
+          "device_id": fcmToken,
+          "player_id": oneSignalPlayerId,
+        },
         context: navigatorKey.currentContext!,
       );
 

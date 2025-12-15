@@ -6,6 +6,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:motoboy/core/utils/translate.dart';
 
 import '../../../core/extensions/workspace.dart';
+import '../../../core/extensions/helper/push_notifications.dart';
 import '../../../core/services/data_store.dart';
 import '../../../core/utils/common_widget.dart';
 import '../../../core/utils/theme/project_color.dart';
@@ -220,6 +221,7 @@ class _OtpScreenState extends State<OtpScreen> {
                                       const SetupInitialScreen(stepIndex: 0)));
                         }
                       }
+                      await getFCMToken();
                     } else if (state is UserFailure) {
                       Widgets.hideLoder(context);
                       if (state.error.isNotEmpty) {
